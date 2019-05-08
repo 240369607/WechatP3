@@ -35,16 +35,15 @@ public class MessageReceiverController {
 
 	@GetMapping // 只处理GET请求
 	public String echo(//
-			@RequestParam("signature") String signature, //
-			@RequestParam("timestamp") String timestamp, //
-			@RequestParam("nonce") String nonce, //
-			@RequestParam("echostr") String echostr//
+			@RequestParam("signature") String signature, 
+			@RequestParam("timestamp") String timestamp, 
+			@RequestParam("nonce") String nonce, 
+			@RequestParam("echostr") String echostr
 	) {
 		// 正常来讲，需要把timestamp和nonce放入一个数组，并进行排序
 		// 接着把排序后的两个元素拼接成一个新的String
 		// 使用SHA-1算法对新的String进行加密
 		// 最后把加密的结果跟signature进行比较，如果相同表示验证通过，返回echostr
-
 		// 原路返回echostr的值，返回以后微信公众号平台就能够认为：服务器对接成功
 		return echostr;
 	}
@@ -53,9 +52,9 @@ public class MessageReceiverController {
 	// @PostMapping专门用于处理POST请求。
 	// 消息的格式是XML形式的字符串，整个消息放入了请求体里面。
 	@PostMapping
-	public String onMessage(@RequestParam("signature") String signature, //
-			@RequestParam("timestamp") String timestamp, //
-			@RequestParam("nonce") String nonce, //
+	public String onMessage(@RequestParam("signature") String signature, 
+			@RequestParam("timestamp") String timestamp, 
+			@RequestParam("nonce") String nonce, 
 			@RequestBody String xml) {
 		LOG.debug("收到用户发送给公众号的信息: \n-----------------------------------------\n"
 				+ "{}\n-----------------------------------------\n", xml);
